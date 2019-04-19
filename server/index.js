@@ -26,6 +26,8 @@ massive(DB_CONNECTION_STRING, { scripts: __dirname + '/db' })
 
 //endpoints
 app.get('/api/events', controller.getAllEvents);
+app.post('/api/events', controller.createEvent);
+app.delete('/api/events/:id', controller.deleteEvent);
 
 //get server listening on a port
 app.listen(4005, () => {
