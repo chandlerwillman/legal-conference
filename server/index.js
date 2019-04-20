@@ -32,4 +32,4 @@ app.delete('/api/events/:id', controller.deleteEvent);
 //get server listening on a port
 app.listen(4005, () => {
     console.log('Server is running on localhost:4005')
-});
+}); 

@@ -3,7 +3,7 @@ module.exports = {
         const db = req.app.get('db');
 
         db.get_events()
-            .then((then) => {
+            .then((events) => {
                 res.status(200).send(events);
             }).catch((error) => {
                 console.log('getAllEvents: ', error);
