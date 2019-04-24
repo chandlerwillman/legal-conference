@@ -12,6 +12,7 @@ module.exports = {
 
     createEvent: (req,res) => {
         const db = req.app.get('db');
+        
         const { title, website_url, img, description, size } = req.body;
 
         db.create_event([title, website_url, img, description, size])

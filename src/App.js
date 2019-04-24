@@ -1,18 +1,21 @@
 //packages
 import React, { Component } from 'react';
+import { HashRouter } from 'react-router-dom';
 import './App.css';
 
 //components
+import Routes from './routes';
 import Nav from './Components/Nav/Nav';
-import Dashboard from './Components/Dashboard/Dashboard';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Nav />
-        <Dashboard />
-      </div>
+      <HashRouter>
+        <div className="App">
+          <Nav />
+          {Routes}
+        </div>
+      </HashRouter>
     );
   }
 }
