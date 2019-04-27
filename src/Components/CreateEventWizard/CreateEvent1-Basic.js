@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { updateFields } from '../../redux/reducers/event_reducer';
+import { updateField } from '../../redux/reducers/event_reducer';
 
 class CreateEventBasic extends Component {
     render() {
@@ -14,17 +14,45 @@ class CreateEventBasic extends Component {
                         <input className="file-input" type="file" name="img" />
                         <span className="file-cta">
                         <span className="file-icon">
-                            <FontAwesomeIcon icon="upload" />
+                            <FontAwesomeIcon icon="image" />
                         </span>
                         <span className="file-label">
                             Choose an image
                         </span>
                         </span>
                         <span className="file-name">
-                        Screen Shot 2017-07-29 at 15.54.25.png
+                        {this.props.img}
                         </span>
                     </label>
                 </div>
+                <div className="field">
+                    <label className="label">Event Title</label>
+                    <div className="control">
+                        <input 
+                            className="input" 
+                            type="text" 
+                            onChange={(e) => this.props.updateField('title', e.target.value)} />
+                    </div>
+                </div>
+                <div className="field">
+                    <label className="label">Website URL</label>
+                    <div className="control">
+                        <input 
+                            className="input" 
+                            type="url" 
+                            onChange={(e) => this.props.updateField('website_url', e.target.value)} />
+                    </div>
+                </div>
+                <div className="field">
+                    <label className="label">Description</label>
+                    <div className="control">
+                        <input 
+                            className="textarea" 
+                            type="text"
+                            onChange={(e) => this.props.updateField('description', e.target.value)} />
+                    </div>
+                </div>
+
             </form>
         );
     }
@@ -39,4 +67,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { updateFields })(CreateEventBasic);
+export default connect(mapStateToProps, { updateField })(CreateEventBasic);

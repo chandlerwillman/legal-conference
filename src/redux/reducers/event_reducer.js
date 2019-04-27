@@ -11,7 +11,7 @@ const UPDATE_FIELD = 'UPDATE_FIELD';
 const CLEAR_FIELDS = 'CLEAR_FIELDS';
 
 //action creators or dispatchers
-export function updateFields(field, payload) {
+export function updateField(field, payload) {
     return {
         type: UPDATE_FIELD,
         field,
