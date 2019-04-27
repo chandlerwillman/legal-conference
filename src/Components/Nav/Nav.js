@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Nav() {
     return (
@@ -26,9 +27,11 @@ export default function Nav() {
             <div className="navbar-end">
                 <div className="navbar-item">
                     <div className="buttons">
-                        <div className="button is-primary">
-                            Create New Event
-                        </div>
+                        <Link to="/new-event">
+                            <div className="button is-primary">
+                                Create New Event
+                            </div>
+                        </Link>
                     </div>
                 </div>
                 <div className="navbar-item">

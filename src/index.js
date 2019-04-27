@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bulma/css/bulma.css';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faUser, faCheck, faEnvelope, faExclamationTriangle, faLock, faUpload } from '@fortawesome/free-solid-svg-icons';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+
+library.add(faUser, faCheck, faEnvelope, faExclamationTriangle, faLock, faUpload)
 
 ReactDOM.render(
 <Provider store={store}>

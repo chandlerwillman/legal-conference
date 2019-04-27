@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 //redux
 import { connect } from 'react-redux';
@@ -63,12 +64,12 @@ class Register extends Component {
             </div>
             <div className="field">
                 <label className="label">Email</label>
-                <div className="control">
+                <div className="control has-icons-left">
                     <input className="input is-in-danger" type="email" onChange={(event) => this.handleChange('email', event)} />
-                    {/* <span className="icon is-small is-left">
-                        <i className="fas fa-envelope"></i>
+                    <span className="icon is-small is-left">
+                        <FontAwesomeIcon icon="envelope" />
                     </span>
-                    <span className="icon is-small is-right">
+                    {/* <span className="icon is-small is-right">
                         <i className="fas fa-exclamation-triangle"></i>
                     </span> */}
                 </div>
@@ -76,14 +77,20 @@ class Register extends Component {
             </div>
             <div className="field">
                 <label className="label">Password</label>
-                <div className="control">
+                <div className="control has-icons-left">
                     <input className="input" type="password" onChange={(event) => this.handleChange('password', event)} />
+                    <span className="icon is-small is-left">
+                        <FontAwesomeIcon icon="lock" />
+                    </span>
                 </div>
             </div>
             <div className="field">
                 <label className="label">Confirm Password</label>
-                <div className="control">
+                <div className="control has-icons-left">
                     <input className="input" type="password" onChange={(event) => this.handleChange('confirmPassword', event)} />
+                    <span className="icon is-small is-left">
+                        <FontAwesomeIcon icon="lock" />
+                    </span>
                 </div>
             </div>
             <div class="field is-grouped is-grouped-centered">
