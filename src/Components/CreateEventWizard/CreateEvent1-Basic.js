@@ -6,23 +6,54 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { updateField } from '../../redux/reducers/event_reducer';
 
 class CreateEventBasic extends Component {
+    
+    imageRender(event) {
+        if(!event.target.files || !event.target.files.length) return;
+        
+        event.persist();
+
+        let image = event.target.files[0];
+        var reader = new FileReader();
+
+        reader.onload = (e) => {
+            this.props.updateField('img', e.target.result);
+            this.props.updateField('imgName', event.target.value.slice(event.target.value.lastIndexOf('\\') + 1))
+        };
+
+        reader.readAsDataURL(image);
+
+        //look into Amazon S3, or Digital Ocean
+    }
+    
     render() {
+
+        let imageInput;
+
+        if(this.props.img) {
+            imageInput = (
+                <span className="file-cta">
+                    <img src={this.props.img} alt={this.props.imgName}/>
+                </span>
+            );
+        } else {
+            imageInput = (
+                <span className="file-cta">
+                    <span className="file-icon">
+                        <FontAwesomeIcon icon="image" />
+                    </span>
+                    <span className="file-label">
+                        Choose an image
+                    </span>
+                </span>
+            );
+        }
+
         return (
             <form>
                 <div className="file has-name is-boxed">
                     <label className="file-label">
-                        <input className="file-input" type="file" name="img" />
-                        <span className="file-cta">
-                        <span className="file-icon">
-                            <FontAwesomeIcon icon="image" />
-                        </span>
-                        <span className="file-label">
-                            Choose an image
-                        </span>
-                        </span>
-                        <span className="file-name">
-                        {this.props.img}
-                        </span>
+                        <input className="file-input" type="file" name="img" onChange={(e) => this.imageRender(e)}/>
+                        {imageInput}
                     </label>
                 </div>
                 <div className="field">
@@ -59,11 +90,14 @@ class CreateEventBasic extends Component {
 }
 
 function mapStateToProps(state) {
+    const { title, website_url, img, imgName, description } = state.event;
+
     return {
-        title: state.title,
-        website_url: state.website_url,
-        img: state.img,
-        description: state.description
+        title,
+        website_url,
+        img,
+        imgName,
+        description
     }
 }
 

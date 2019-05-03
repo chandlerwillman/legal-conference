@@ -1,6 +1,6 @@
 //redux state
 const initialState = {
-    user: {}
+    
 };
 
 //action types
@@ -19,7 +19,7 @@ export function login(userCredentials) {
 export default function userReducer(state = initialState, action) {
     switch(action.type) {
         case LOGIN:
-            return Object.assign({}, state, {user: action.payload})
+            return Object.assign({}, state, action.payload)
         default:
             return state;
     }

@@ -3,6 +3,7 @@ const initialState = {
     title: "",
     website_url: "",
     img: "",
+    imgName: "",
     description: ""
 };
 
@@ -14,8 +15,10 @@ const CLEAR_FIELDS = 'CLEAR_FIELDS';
 export function updateField(field, payload) {
     return {
         type: UPDATE_FIELD,
-        field,
-        payload
+        payload: {
+            field, 
+            payload
+        }
     }
 }
 
@@ -31,7 +34,7 @@ export default function eventReducer(state = initialState, action) {
         case UPDATE_FIELD:
             return {
                 ...state,
-                [action.field]: `${action.payload}`
+                [action.payload.field]: `${action.payload.payload}`
             }
         case CLEAR_FIELDS:
             return {
