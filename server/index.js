@@ -7,26 +7,14 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const sessions = require('express-session');
 const bcrypt = require('bcrypt');
-
-// VANILLA NODE SERVER
-
-// const http = require('http');
-
-// const server = http.createServer((req, res) => {
-//     // do everything here
-// });
-
-// server.listen(foo, () => {
-//     console.log(foo);
-// });
-
+const axios = require('axios').default;
 require('dotenv').config({ path: __dirname + '/.env' });
 
 //controllers
 const controller = require('./controller');
 
 //deconstruct variables
-const { DB_CONNECTION_STRING } = process.env;
+const { DB_CONNECTION_STRING, PLACES_API_KEY } = process.env;
 
 //middleware
 const app = express();
@@ -62,7 +50,7 @@ passport.use('login', new LocalStrategy(function (username, password, done) {
     const db = app.get('db');
 
     //find user in db
-    db.users.find({ username })
+    db.users.find({ email: username })
         .then(userInfo => {
             //capture user info
             const user = userInfo[0];
@@ -70,7 +58,7 @@ passport.use('login', new LocalStrategy(function (username, password, done) {
             delete user.password;
             done(null, user);
         }).catch(error => {
-            console.log(error.message);
+            console.log("Error in Login Strategy:", error.message);
         });
 }));
 
@@ -133,6 +121,21 @@ app.post('/auth/login', passport.authenticate('login'), (req, res) => {
 app.post('/auth/register', passport.authenticate('register'), (req, res) => {
     const { user } = req;
     res.send(user);
+});
+
+//location endpoint
+app.get('/api/location', (req,res) => {
+    const apiUrl = `https://maps.googleapis.com/maps/api/place/autocomplete/json?` + 
+        `key=${PLACES_API_KEY}` + 
+        `&input=${req.query.input}`;
+    
+    axios.get(apiUrl)
+        .then(response => {
+            res.send(response.data);
+        }).catch(error => {
+            console.log(error);
+            res.status(500).send({message: 'internal server error'});
+        });
 });
 
 //events endpoints

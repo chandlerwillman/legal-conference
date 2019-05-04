@@ -63,8 +63,8 @@ class Login extends Component {
               </span>
           </div>
         </div> 
-        <div class="field is-grouped is-grouped-centered">
-          <div class="control">
+        <div className="field is-grouped is-grouped-centered">
+          <div className="control">
             <button className="button is-link is-primary" onClick={this.handleLogin}>Login</button>
           </div>
           <div className="control">
