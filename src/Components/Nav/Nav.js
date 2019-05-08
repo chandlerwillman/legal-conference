@@ -2,6 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Nav() {
+    
+    const launchEventWizard = () => {
+        var modal = document.getElementById('create-event-modal');
+        modal.style.display = 'block';
+    }
+    
     return (
         <nav className="navbar" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
@@ -26,9 +32,9 @@ export default function Nav() {
 
             <div className="navbar-end">
                 <div className="navbar-item">
-                    <div className="buttons">
-                        <Link to="/new-event">
-                            <div className="button is-primary">
+                    <div className="buttons" id="create-event-button">
+                        <Link to="/new-event/basic">
+                            <div className="button is-primary" onClick={launchEventWizard}>
                                 Create New Event
                             </div>
                         </Link>

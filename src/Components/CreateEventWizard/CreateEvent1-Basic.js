@@ -8,7 +8,6 @@ import { updateField } from '../../redux/reducers/event_reducer';
 import axios from 'axios';
 
 
-
 class CreateEventBasic extends Component {
     constructor(props) {
         super(props);
@@ -109,19 +108,11 @@ class CreateEventBasic extends Component {
                             onChange={(e) => this.props.updateField('website_url', e.target.value)} />
                     </div>
                 </div>
-                {/* <div className="field">
+                <div className="field">
                     <label className="label">Location</label>
                     <div className="control">
-                        <input
-                            className="input"
-                            type="text"
-                            onChange={(e) => this.updateLocation(e)} />
-                    </div>
-                </div> */}
-                <div className="field">
-                    <label className="label">Location Autocomplete</label>
-                    <div className="control">
                         <Autocomplete
+                            className="input"
                             getItemValue={(item) => item.description}
                             items={this.state.predictions}
                             renderItem={(item, isHighlighted) => 
