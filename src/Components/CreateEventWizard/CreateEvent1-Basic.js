@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Autocomplete from 'react-autocomplete';
@@ -27,6 +26,7 @@ class CreateEventBasic extends Component {
             });
     };
     
+    //uses google places autocomplete to grab the event location
     updateLocation(event) {
         this.setState({ location: event.target.value }, () => {
             if(this.debounceId) {
@@ -61,12 +61,13 @@ class CreateEventBasic extends Component {
     
     render() {
 
+        //handling the image file preview
         let imageInput;
 
         if(this.props.img) {
             imageInput = (
                 <span className="file-cta">
-                    <img src={this.props.img} alt={this.props.imgName}/>
+                    <img src={this.props.img} alt={this.props.imgName} />
                 </span>
             );
         } else {
@@ -82,8 +83,9 @@ class CreateEventBasic extends Component {
             );
         }
 
+        //return jsx
         return (
-            <form>
+            <div>
                 <div className="file has-name is-boxed">
                     <label className="file-label">
                         <input className="file-input" type="file" name="img" onChange={(e) => this.imageRender(e)}/>
@@ -110,13 +112,13 @@ class CreateEventBasic extends Component {
                 </div>
                 <div className="field">
                     <label className="label">Location</label>
-                    <div className="control">
+                    <div className="control dropdown">
                         <Autocomplete
                             className="input"
                             getItemValue={(item) => item.description}
                             items={this.state.predictions}
                             renderItem={(item, isHighlighted) => 
-                                <div key={item.id} style={{ background: isHighlighted ? 'lightgray' : 'white'}}>
+                                <div key={item.id} className="dropdown-item" style={{ background: isHighlighted ? 'lightgray' : 'white'}}>
                                     {item.description}
                                 </div>
                             }
@@ -134,8 +136,7 @@ class CreateEventBasic extends Component {
                             onChange={(e) => this.props.updateField('description', e.target.value)} />
                     </div>
                 </div>
-
-            </form>
+            </div>
         );
     }
 }

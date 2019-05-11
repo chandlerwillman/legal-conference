@@ -1,24 +1,15 @@
-.modal-card {
-    background-color: white;
+.card {
+    margin: 50px 100px;
 }
-
-.control {
-    box-sizing: border-box;
-    clear: both;
-    font-size: 1rem;
-    position: relative;
-    text-align: left;
-}
-
 .file {
-    max-width: 300px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
-
-section {
-    padding: 20px;
+.is-active p {
+    color: #3273dc;
 }
-
+.file {
+    width: 350px;
+}
 input {
     align-items: center;
     border: 1px solid transparent;
@@ -36,4 +27,8 @@ input {
     padding-top: calc(0.375em - 1px);
     position: relative;
     vertical-align: top;
+}
+footer button {
+    margin-left: 25px;
+    margin-bottom: 25px;
 }

@@ -3,11 +3,6 @@ import { Link } from 'react-router-dom';
 
 export default function Nav() {
     
-    const launchEventWizard = () => {
-        var modal = document.getElementById('create-event-modal');
-        modal.style.display = 'block';
-    }
-    
     return (
         <nav className="navbar" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
@@ -24,9 +19,11 @@ export default function Nav() {
 
             <div id="navbarBasicExample" className="navbar-menu">
                 <div className="navbar-start">
-                    <div className="navbar-item">
-                        My Events
-                    </div>
+                    <Link to="/dashboard">
+                        <div className="navbar-item">
+                            My Events
+                        </div>
+                    </Link>
                 </div>
             </div>
 
@@ -34,7 +31,7 @@ export default function Nav() {
                 <div className="navbar-item">
                     <div className="buttons" id="create-event-button">
                         <Link to="/new-event/basic">
-                            <div className="button is-primary" onClick={launchEventWizard}>
+                            <div className="button is-primary">
                                 Create New Event
                             </div>
                         </Link>
